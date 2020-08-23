@@ -1,0 +1,66 @@
+
+启动nacos：
+nohup sh startup.sh -m standalone &
+
+
+启动zipkin:
+nohup java -jar zipkin-server-2.21.6-exec.jar &
+
+
+启动RocketMQ：
+nohup sh mqnamesrv &
+nohup sh mqbroker -n 192.168.137.131:9876 autoCreateTopicEnable=true &
+
+
+启动sentinel
+nohup java -Dserver.port=8810 -Dcsp.sentinel.dashboard.server=192.168.137.131:8810 -Dproject.name=sentinel-dashboard -jar sentinel-dashboard-1.7.2.jar &
+
+
+
+启动seata事务：
+./seata-server.sh -p 9000 -h 192.168.137.131 -m file
+
+
+
+
+
+192.168.137.131
+
+
+8848
+
+问题：Spring Boot 2.2.3 不兼容 Spring Cloud Hoxton.SR1：
+解决方法：
+1.https://blog.csdn.net/qq_16063307/article/details/104056086
+
+
+
+问题：java.lang.AbstractMethodError: com.alibaba.cloud.sentinel.feign.SentinelContractHolder.parseAndValid:
+解决方法：
+1.https://blog.csdn.net/kongliand/article/details/108058831
+2.https://blog.csdn.net/pointer_v/article/details/104989935
+
+
+问题：
+org.springframework.cloud.gateway.config.GatewayAutoConfiguration$NettyConfiguration.reactorNettyWebSocketClient(GatewayAutoConfiguration.java:738)
+org.springframework.web.reactive.socket.client.ReactorNettyWebSocketClient.setHandlePing(Z)V
+
+解决方法：
+https://coding.imooc.com/learn/questiondetail/195858.html
+http://coding.imooc.com/learn/questiondetail/196010.html
+https://blog.csdn.net/qq_16063307/article/details/104056086?fps=1&locationNum=2
+
+
+
+问题：
+java.lang.NoClassDefFoundError: reactor/util/retry/Retry
+
+解决方法:
+
+
+问题：
+java.lang.NoSuchMethodError: org.springframework.http.server.reactive.ServerHttpResponse.setRawStatusCode(Ljava/lang/Integer;)Z
+
+解决方法：
+https://blog.csdn.net/weixin_44216706/article/details/107047281
+
