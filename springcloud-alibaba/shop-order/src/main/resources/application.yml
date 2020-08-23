@@ -1,0 +1,72 @@
+#server:
+#  port: 8091
+#spring:
+#  zipkin:
+#    base-url: http://192.168.137.131:9411/  #zipkin server的请求地址
+#    discovery-client-enabled: false  #让nacos把它当成一个URL，而不要当做服务名
+#  sleuth:
+#    sampler:
+#      probability: 1.0 #采样的百分比
+#  application:
+#    name: service-order
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://192.168.137.131:3306/shop?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+#    username: root
+#    password: gouyadong
+#  jpa:
+#    properties:
+#      hibernate:
+#        format-sql: true
+#        hbm2ddl:
+#          auto: update
+#        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+#    show-sql: true
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 192.168.137.131:8848
+#      config:
+#        refresh-enabled: false
+#    sentinel:
+#      transport:
+#        port: 9999  #控制台和微服务交互的端口,任意一个未被使用的端口即可
+#        dashboard: 192.168.137.131:8810  #sentinel控制台的地址
+#
+#service-product: # 调用的提供者的名称,集群模式下调用服务的方式
+#  ribbon:
+#    #    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
+#
+## 开启feign对sentinel的支持
+#feign:
+#  sentinel:
+#    enabled: true
+#
+#rocketmq:
+#  name-server: 192.168.137.131:9876
+#  producer:
+#    group: shop-order
+#
+#seata:
+#  application-id: service-order
+#  enabled: true
+#  tx-service-group: service-order
+#  enable-auto-data-source-proxy: true
+#  config:
+#    type: nacos
+#    nacos:
+#      namespace:
+#      server-addr: 192.168.137.131:8848
+#      group: SEATA_GROUP
+#      username: "nacos"
+#      password: "nacos"
+#  registry:
+#    type: nacos
+#    nacos:
+#      application: seata-server
+#      server-addr: 192.168.137.131:8848
+#      group: SEATA_GROUP
+#      namespace:
+#      username: "nacos"
+#      password: "nacos"

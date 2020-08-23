@@ -1,0 +1,65 @@
+#server:
+#  port: 8081
+#spring:
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 192.168.137.131:8848
+#      config:
+#        refresh-enabled: false
+#    sentinel:
+#      transport:
+#        port: 9999  #控制台和微服务交互的端口,任意一个未被使用的端口即可
+#        dashboard: 192.168.137.131:8810  #sentinel控制台的地址
+#  zipkin:
+#    base-url: http://192.168.137.131:9411/  #zipkin server的请求地址
+#    discovery-client-enabled: false  #让nacos把它当成一个URL，而不要当做服务名
+#  sleuth:
+#    sampler:
+#      probability: 1.0 #采样的百分比
+#  application:
+#    name: service-product
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://192.168.137.131:3306/shop?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+#    username: root
+#    password: gouyadong
+#  jpa:
+#    properties:
+#      hibernate:
+#        format_sql: true
+#        hbm2ddl:
+#          auto: update
+#        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+#    show-sql: true
+#
+#config:
+#  appName: product
+#
+#seata:
+#  application-id: service-product
+#  enabled: true
+#  tx-service-group: service-product
+#  config:
+#    type: nacos
+#    nacos:
+#      namespace:
+#      server-addr: 192.168.137.131:8848
+#      group: SEATA_GROUP
+#      username: "nacos"
+#      password: "nacos"
+#  registry:
+#    type: nacos
+#    nacos:
+#      application: seata-server
+#      server-addr: 192.168.137.131:8848
+#      group: SEATA_GROUP
+#      namespace:
+#      username: "nacos"
+#      password: "nacos"
+#  enable-auto-data-source-proxy: true
+#
+## 开启feign对sentinel的支持
+#feign:
+#  sentinel:
+#    enabled: true

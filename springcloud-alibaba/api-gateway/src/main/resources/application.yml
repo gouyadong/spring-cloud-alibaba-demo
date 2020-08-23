@@ -1,0 +1,66 @@
+server:
+  port: 7000
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.137.131:8848
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      #  zipkin:
+#    base-url: http://192.168.137.131:9411/ #zipkin server的请求地址
+#    discoveryClientEnabled: false #让nacos把它当成一个URL，而不要当做服务名
+#  sleuth:
+#    sampler:
+#      probability: 1.0 #采样的百分比
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 192.168.137.131:8848
+#    gateway:
+#      discovery:
+#        locator:
+#          enabled: true   # 让gateway从nacos中获取服务信息
+
+      #      routes: # 路由数组[路由就是当请求满足什么样的条件的时候转发到哪个微服务上]
+      #        - id: product_route #当前路由的标识,要求唯一
+      #          uri: lb://service-product  #请求最终要被转发到的地址  lb:指的是负载均衡,后面跟的是具体的微服务在nacos中的标识
+      #          #          uri: http://localhost:8081  #请求最终要被转发到的地址
+      #          order: 1 #路由的优先级,数字越小代表路由的优先级越高
+      #          predicates:  # 断言(条件判断,返回值是boolean,转发请求要满足的条件)
+      #            - Path=/product-serv/** #当请求路径满足path指定的规则时,此路由信息才会正常转发
+      #          filters: # 过滤器(请求传递过程中,对请求做一些手脚)
+      #            - StripPrefix=1 #在请求转发之前,去掉一层路径
+#      routes:
+#        - id: product_route
+#          uri: lb://service-product
+#          predicates:
+#            - Path=/product-serv/**
+#          filters:
+#            - StripPrefix=1
+
+
+
+
+#      routes:
+#        - id: product_route
+#          uri: lb://service-product
+#          predicates:
+#            - Path=/product-serv/**
+##            - Age=18,60 #限制年龄只有在18到60岁之间的人能访问
+#          #            - Before=2020-11-28T00:00:00.000+08:00
+#          #            - Method=GET
+#          filters:
+#            - StripPrefix=1
+##            - Log=true,false #控制日志是否打印
+#    #            - SetStatus=20001  # 修改返回状态
+#        - id: order_route
+#          uri: lb://service-order
+#          predicates:
+#            - Path=/order-serv/**
+#          filters:
+#            - StripPrefix=1
